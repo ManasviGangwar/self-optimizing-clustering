@@ -24,12 +24,11 @@ $$
 P_{mr}
 =
 \sum_{j=1}^{n}
-\exp\!\left(
+\exp\left(
 -\frac{d^2(\bar{x}_r,\bar{x}_j)}
 {\delta_m^2}
 \right)
 $$
-
 where:
 
 * $P_{mr}$ is the potential associated with data point $r$
