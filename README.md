@@ -38,16 +38,15 @@ To optimize $\delta_m$, SOC employs **Lagrange interpolation** to model the rela
 
 The interpolation polynomial is defined as:
 
-$$
+```math
 S_t
-===
-
+=
 \sum_{m=1}^{M}
 S_m
-\prod_{\substack{k=1 \ k \neq m}}^{M}
-\frac{(\delta_t-\delta_k)}
-{(\delta_m-\delta_k)}
-$$
+\prod_{\substack{k=1 \\ k \neq m}}^{M}
+\frac{\delta_t-\delta_k}
+{\delta_m-\delta_k}
+```
 
 where:
 
