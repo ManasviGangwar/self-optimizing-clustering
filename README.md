@@ -19,8 +19,7 @@ The algorithm is primarily designed for robust **color image segmentation**. It 
 Unlike heuristic-based thresholding, SOC analytically optimizes the neighborhood threshold value $\delta_m$ for each cluster.
 
 The potential value of each data point is computed using the **Mountain Function**:
-
-$$
+```math
 P_{mr}
 =
 \sum_{j=1}^{n}
@@ -28,7 +27,7 @@ P_{mr}
 -\frac{d^2(\bar{x}_r,\bar{x}_j)}
 {\delta_m^2}
 \right)
-$$
+```
 where:
 
 * $P_{mr}$ is the potential associated with data point $r$
