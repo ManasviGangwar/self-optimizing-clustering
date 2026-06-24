@@ -21,14 +21,13 @@ Unlike heuristic-based thresholding, SOC analytically optimizes the neighborhood
 The potential value of each data point is computed using the **Mountain Function**:
 
 $$
-P_{mr}=\sum_{j=1}^{n}
-\exp\left[
--\left(
-\frac{d^2(\bar{x}_r,\bar{x}_j)}
+P_{mr}
+=
+\sum_{j=1}^{n}
+\exp\!\left(
+-\frac{d^2(\bar{x}_r,\bar{x}_j)}
 {\delta_m^2}
 \right)
-\right]
-\right]
 $$
 
 where:
