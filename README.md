@@ -16,34 +16,52 @@ The algorithm is primarily designed for robust **color image segmentation**. It 
 
 ## Mathematical Background
 
-Unlike heuristic-based thresholding, SOC analytically optimizes the neighborhood threshold value (\delta_m) for each cluster.
+Unlike heuristic-based thresholding, SOC analytically optimizes the neighborhood threshold value $\delta_m$ for each cluster.
 
-The potential value of each data point is calculated using the **Mountain Function**:
+The potential value of each data point is computed using the **Mountain Function**:
 
-[
-P_{mr} = \sum_{j=1}^{n}
-\exp \left[
+$$
+P_{mr}=\sum_{j=1}^{n}
+\exp\left[
 -\left(
 \frac{d^2(\bar{x}_r,\bar{x}_j)}
 {\delta_m^2}
 \right)
 \right]
-]
+\right]
+$$
 
-To optimize (\delta_m), the algorithm relies on a sequence of interpolating polynomials that relate the threshold value to the **Silhouette Index** ((S_t)) of the resulting clusters.
+where:
 
-The **Lagrange interpolation polynomial** is given by:
+* $P_{mr}$ is the potential associated with data point $r$
+* $d(\bar{x}_r,\bar{x}_j)$ is the Euclidean distance between points $r$ and $j$
+* $\delta_m$ is the neighborhood threshold parameter
 
-[
-S_t =
+To optimize $\delta_m$, SOC employs **Lagrange interpolation** to model the relationship between threshold values and the resulting cluster quality measured by the **Silhouette Index**.
+
+The interpolation polynomial is defined as:
+
+$$
+S_t
+===
+
 \sum_{m=1}^{M}
 S_m
 \prod_{\substack{k=1 \ k \neq m}}^{M}
 \frac{(\delta_t-\delta_k)}
 {(\delta_m-\delta_k)}
-]
+$$
 
-By finding the roots of the derivative of this polynomial, the algorithm determines a scaling factor ((\beta_m)) that iteratively adjusts the threshold toward a value that maximizes the Global Silhouette Index.
+where:
+
+* $S_t$ is the estimated silhouette value at threshold $\delta_t$
+* $S_m$ represents the silhouette score corresponding to threshold $\delta_m$
+* $M$ is the number of interpolation points
+
+By computing the roots of the derivative of the interpolation polynomial, the algorithm obtains an optimal scaling factor $\beta_m$ that iteratively updates the threshold value toward the maximum achievable **Global Silhouette Index (GSI)**.
+
+This optimization process enables SOC to automatically discover cluster structures with high compactness and strong inter-cluster separation, eliminating the need for manually selected heuristic thresholds.
+
 
 ---
 
